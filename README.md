@@ -69,3 +69,19 @@ export default defineConfig({
    "@/*": ["src/*"]
 }
 ```
+
+## main.ts 中 导入 ./App.vue 报错
+
+新建项目后 `main.ts` 中包: `cannot find module './App.vue'...`
+
+报错原因: vite使用的是 ts, ts识别不了 `.vue` 后缀的文件
+
+解决办法: 在项目的根目录下创建 `env.d.ts` 文件，打开文件输入如下内容即可:
+
+```js
+declare module "*.vue" {
+    import { DefineComponent } from "vue";
+    const component: DefineComponent<{}, {}, Any>
+    export default component
+}
+```
