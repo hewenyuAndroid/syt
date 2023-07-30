@@ -85,3 +85,16 @@ declare module "*.vue" {
     export default component
 }
 ```
+
+## 去除项目默认的样式
+
+npm 默认创建的项目中会有默认的样式，需要清除默认样式
+
+1. 进入npm官网 https://www.npmjs.com/ 搜索 `reset.scss`
+2. 找到 对应的 `reset.scss` 文件拷贝文件代码: `https://www.npmjs.com/package/reset.scss?activeTab=code`
+3. 在 `src` 目录下创建 `style/reset.scss` 文件，然后将 第2步的内容拷贝到该文件下;
+4. 在 `main.ts` 文件中导入清除默认样式的 css 文件: `import '@/style/reset.scss'`;
+
+注意: 如果执行完上述步骤报错 (`Preprocessor dependency "sass" not found. Did you install it?`)，则需要安装 `sass` 插件;
+
+执行 `npm install sass`, 安装成功后重启项目;
