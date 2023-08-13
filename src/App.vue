@@ -8,7 +8,7 @@
     <!-- 内容区域 -->
     <div class="content">content</div>
     <!-- 底部 -->
-    <div class="footer">footer</div>
+    <HospitalBottom />
   </div>
 </template>
 
@@ -26,9 +26,4 @@
   margin-top: 70px;
 }
 
-.footer {
-  width: 100%;
-  height: 100px;
-  background-color: bisque;
-}
 </style>

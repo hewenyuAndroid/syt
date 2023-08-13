@@ -7,12 +7,14 @@ import App from '@/App.vue'
 
 // 引入全局组件: top bottom
 import HospitalTop from '@/components/hospital-top/index.vue'
+import HospitalBottom from '@/components/hospital-bottom/index.vue'
 
 // 创建应用实例对象
 const app = createApp(App)
 
 // 注册全局组件
 app.component('HospitalTop', HospitalTop)
+app.component('HospitalBottom', HospitalBottom)
 
 // 挂载
 app.mount('#app')
