@@ -18,7 +18,7 @@
 export default {};
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 .top {
   /* 固定在顶部上方，使用固定定位 */
   position: fixed;

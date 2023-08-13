@@ -38,6 +38,10 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 },
 ```
 
+## SCSS 安装
+
+命令: `npm i --save-dev sass`
+
 ## src别名配置
 
 找到 `vite.config.ts` 配置文件.
