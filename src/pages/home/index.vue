@@ -4,6 +4,18 @@
     <Carousel />
     <!-- 搜索 -->
     <Search />
+    <!-- 医院结构 -->
+    <el-row gutter="20">
+      <!-- 左侧区域 -->
+      <el-col :span="20">
+        <!-- 医院等级 -->
+        <Level />
+        <!-- 地区 -->
+        <Region />
+      </el-col>
+      <!-- 右侧区域 -->
+      <el-col :span="4">right</el-col>
+    </el-row>
   </div>
 </template>
 
@@ -12,6 +24,10 @@
 import Carousel from "./carousel/index.vue";
 // 引入首页搜索组件
 import Search from "./search/index.vue";
+// 引入等级组件
+import Level from "./level/index.vue";
+// 引入地区组件
+import Region from "./region/index.vue";
 </script>
 
 <style scope lang="scss">
