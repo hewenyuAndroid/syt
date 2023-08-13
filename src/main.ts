@@ -9,12 +9,18 @@ import App from '@/App.vue'
 import HospitalTop from '@/components/hospital-top/index.vue'
 import HospitalBottom from '@/components/hospital-bottom/index.vue'
 
+// 引入 vue-router 核心插件并安装
+import router from '@/router'
+
 // 创建应用实例对象
 const app = createApp(App)
 
 // 注册全局组件
 app.component('HospitalTop', HospitalTop)
 app.component('HospitalBottom', HospitalBottom)
+
+// 安装 vue-router
+app.use(router);
 
 // 挂载
 app.mount('#app')

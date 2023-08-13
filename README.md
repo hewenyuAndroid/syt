@@ -98,3 +98,9 @@ npm 默认创建的项目中会有默认的样式，需要清除默认样式
 注意: 如果执行完上述步骤报错 (`Preprocessor dependency "sass" not found. Did you install it?`)，则需要安装 `sass` 插件;
 
 执行 `npm install sass`, 安装成功后重启项目;
+
+
+## 安装 vue-router
+
+- 安装最新版本: `npm i vue-router`  // 最新版本 4.x
+- 安装历史版本: `npm i vue-router@3`   // 安装 vue2 对应的路由版本 3.x
