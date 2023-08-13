@@ -12,6 +12,10 @@ import HospitalBottom from '@/components/hospital-bottom/index.vue'
 // 引入 vue-router 核心插件并安装
 import router from '@/router'
 
+// 引入 element ui组件
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 // 创建应用实例对象
 const app = createApp(App)
 
@@ -21,6 +25,8 @@ app.component('HospitalBottom', HospitalBottom)
 
 // 安装 vue-router
 app.use(router);
+// 安装 element ui 组件
+app.use(ElementPlus);
 
 // 挂载
 app.mount('#app')

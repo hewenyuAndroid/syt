@@ -24,8 +24,10 @@
 
 .content {
   width: 1200px;
-  background-color: aqua;
-  height: 700px;
+  min-height: 700px;
   margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
