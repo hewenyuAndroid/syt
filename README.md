@@ -125,3 +125,12 @@ npm 默认创建的项目中会有默认的样式，需要清除默认样式
 首次使用需要先安装: `npm install @element-plus/icons-vue`
 
 文档: https://element-plus.gitee.io/en-US/component/icon.html#icon-usage
+
+## 安装 axios
+
+> 安装最新版本: `npm i axios`
+
+
+## vite 跨域配置
+
+文档: https://cn.vitejs.dev/config/server-options.html#server-proxy

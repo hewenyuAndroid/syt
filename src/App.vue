@@ -1,4 +1,17 @@
 <script setup lang="ts">
+import request from "@/utils/request";
+import { onMounted } from "vue";
+import { reqHospital } from "@/api/home/index";
+
+onMounted(() => {
+  a();
+  console.log("Mounted");
+});
+
+const a = async () => {
+  let aaa: any = await reqHospital(1, 2);
+  console.log("--->", aaa);
+};
 </script>
 
 <template>
