@@ -2,7 +2,9 @@
   <el-card class="box-card" shadow="hover">
     <div class="content">
       <div class="left">
-        <div class="hospital-name">医院名称</div>
+        <div class="hospital-name">
+          {{ hospitalDetail.hosname ? hospitalDetail.hosname : "null" }}
+        </div>
         <div class="hotpital-tip">
           <div class="hospital-level">
             <svg
@@ -20,7 +22,11 @@
                 p-id="4169"
               ></path>
             </svg>
-            <span>三级甲等</span>
+            <span>{{
+              hospitalDetail.param.hostypeString
+                ? hospitalDetail.param.hostypeString
+                : "null"
+            }}</span>
           </div>
           <div class="hospital-open-time">
             <svg
@@ -50,16 +56,29 @@
                 p-id="5396"
               ></path>
             </svg>
-            <span>每天7:00放号</span>
+            <span
+              >{{
+                hospitalDetail?.bookingRule?.releaseTime
+                  ? hospitalDetail?.bookingRule?.releaseTime
+                  : "null"
+              }}放号</span
+            >
           </div>
         </div>
       </div>
-      <img src="../../../assets/images/logo.png" alt="医院logo" class="right" />
+      <!-- <img src="../../../assets/images/logo.png" alt="医院logo" class="right" /> -->
+      <img
+        :src="`data:image/jpeg;base64,${hospitalDetail.logoData}`"
+        alt="医院logo"
+        class="right"
+      />
     </div>
   </el-card>
 </template>
 
 <script setup lang="ts">
+// 获取父组件传递的 props 数据
+defineProps(["hospitalDetail"]);
 </script>
 
 <style scoped lang="scss">

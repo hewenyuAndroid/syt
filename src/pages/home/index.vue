@@ -14,7 +14,12 @@
         <Region />
         <!-- 医院卡片列表 -->
         <div class="hospital-list">
-          <Card class="hospital-card" v-for="item in 10" :key="item" />
+          <Card
+            class="hospital-card"
+            v-for="(item, index) in hospitalList"
+            :key="index"
+            :hospitalDetail="item"
+          />
         </div>
         <!-- 分页组件 -->
         <Pagination class="pagination" />
@@ -41,6 +46,30 @@ import Card from "./card/index.vue";
 // 引入分页组件
 // @ts-ignore
 import Pagination from "./pagination/index.vue";
+
+// 引入生命周期组件
+import { onMounted, ref, reactive } from "vue";
+
+// 引入医院接口
+import { reqHospitalList } from "@/api/home/index";
+
+// 分页
+let pageIndex = ref(1);
+let pageSize = ref(10);
+
+// 医院数据列表
+let hospitalList = ref([]);
+
+// 组件被挂载时
+onMounted(() => {
+  requestHospitalList();
+});
+
+const requestHospitalList = async () => {
+  const result: any = await reqHospitalList(pageIndex.value, pageSize.value);
+  console.log("requestHospitalList-->", result);
+  hospitalList.value = result.data.data.content;
+};
 </script>
 
 <style scope lang="scss">
