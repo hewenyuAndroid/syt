@@ -19,10 +19,15 @@
             v-for="(item, index) in hospitalList"
             :key="index"
             :hospitalDetail="item"
+            :onPageIndexChange="onPageIndexChange"
           />
         </div>
         <!-- 分页组件 -->
-        <Pagination class="pagination" />
+        <Pagination
+          class="pagination"
+          :pageInfo="pageInfo"
+          :onPageIndexChange="onPageIndexChange"
+        />
       </el-col>
       <!-- 右侧区域 -->
       <el-col :span="4">right</el-col>
@@ -54,8 +59,16 @@ import { onMounted, ref, reactive } from "vue";
 import { reqHospitalList } from "@/api/home/index";
 
 // 分页
-let pageIndex = ref(1);
-let pageSize = ref(10);
+let pageInfo = reactive({
+  pageIndex: 1,
+  pageSize: 10,
+  total: 0,
+});
+let pageIndex = ref<number>(1);
+let pageSize = ref<number>(10);
+
+// 分页总数
+let totalCount = ref<number>(0);
 
 // 医院数据列表
 let hospitalList = ref([]);
@@ -65,10 +78,23 @@ onMounted(() => {
   requestHospitalList();
 });
 
+/**
+ * 下标变更时的回调函数
+ */
+function onPageIndexChange(index: number) {
+  console.log("home index onPageIndexChange():", index);
+  pageIndex.value = index;
+}
+
+/**
+ * 请求医院列表
+ */
 const requestHospitalList = async () => {
   const result: any = await reqHospitalList(pageIndex.value, pageSize.value);
   console.log("requestHospitalList-->", result);
   hospitalList.value = result.data.data.content;
+
+  pageInfo.total = result.data.data.totalElements;
 };
 </script>
 
