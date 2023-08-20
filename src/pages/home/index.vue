@@ -84,6 +84,7 @@ onMounted(() => {
 function onPageIndexChange(index: number) {
   console.log("home index onPageIndexChange():", index);
   pageIndex.value = index;
+  requestHospitalList();
 }
 
 /**
