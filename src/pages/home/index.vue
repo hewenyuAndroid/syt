@@ -81,9 +81,10 @@ onMounted(() => {
 /**
  * 下标变更时的回调函数
  */
-function onPageIndexChange(index: number) {
+function onPageIndexChange(index: number, size: number) {
   console.log("home index onPageIndexChange():", index);
   pageIndex.value = index;
+  pageSize.value = size;
   requestHospitalList();
 }
 

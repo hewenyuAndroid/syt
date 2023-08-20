@@ -7,6 +7,7 @@
     layout="prev, pager, next, jumper, ->,sizes, total"
     :total="pageInfo.total"
     @current-change="changePage"
+    @size-change="changeSize"
   />
 </template>
 
@@ -25,9 +26,19 @@ let pageInfo = reactive(props.pageInfo);
  */
 const changePage = (index: number) => {
   // 分页器下标发生变更时的回调函数
-  console.log("---------------->changePage(), index=", index);
-  props.onPageIndexChange(index);
+  console.log("pagination index changePage(), index=", index);
+  props.onPageIndexChange(index, pageInfo.pageSize);
   pageInfo.pageIndex = index;
+};
+
+/**
+ * 分页数量发生变化
+ */
+const changeSize = (size: number) => {
+  console.log("pagination index changeSize(): ", size);
+  pageInfo.pageIndex = 1;
+  pageInfo.pageSize = size;
+  props.onPageIndexChange(pageInfo.pageIndex, pageInfo.pageSize);
 };
 </script>
 
