@@ -58,6 +58,9 @@ import { onMounted, ref, reactive } from "vue";
 // 引入医院接口
 import { reqHospitalList } from "@/api/home/index";
 
+// 引入医院数据对象
+import { HospitalResponseData, Content } from "@/api/home/type";
+
 // 分页
 let pageInfo = reactive({
   pageIndex: 1,
@@ -71,7 +74,7 @@ let pageSize = ref<number>(10);
 let totalCount = ref<number>(0);
 
 // 医院数据列表
-let hospitalList = ref([]);
+let hospitalList = ref<Content>([]);
 
 // 组件被挂载时
 onMounted(() => {
@@ -92,11 +95,15 @@ function onPageIndexChange(index: number, size: number) {
  * 请求医院列表
  */
 const requestHospitalList = async () => {
-  const result: any = await reqHospitalList(pageIndex.value, pageSize.value);
+  const result: HospitalResponseData = await reqHospitalList(
+    pageIndex.value,
+    pageSize.value
+  );
   console.log("requestHospitalList-->", result);
-  hospitalList.value = result.data.data.content;
-
-  pageInfo.total = result.data.data.totalElements;
+  if (result.code === 200) {
+    hospitalList.value = result.data.content;
+    pageInfo.total = result.data.totalElements;
+  }
 };
 </script>
 

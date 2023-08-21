@@ -3,6 +3,8 @@
 // 导入 request 对象
 import request from "@/utils/request";
 
+import { HospitalResponseData } from "@/api/home/type";
+
 // 通过枚举管理首页相关的api
 enum API {
     // 获取已有的医院的数据接口地址
@@ -11,5 +13,5 @@ enum API {
 
 // 分页获取议员列表
 export const reqHospitalList = (pageIndex: number, pageSize: number) =>
-    request.get(API.URL_HOSPITAL_LIST + `${pageIndex}/${pageSize}`)
+    request.get<any, HospitalResponseData>(API.URL_HOSPITAL_LIST + `${pageIndex}/${pageSize}`)
 
