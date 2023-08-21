@@ -3,7 +3,7 @@
 // 导入 request 对象
 import request from "@/utils/request";
 
-import { HospitalResponseData } from "@/api/home/type";
+import type { HospitalResponseData } from "@/api/home/type";
 
 // 通过枚举管理首页相关的api
 enum API {

@@ -59,7 +59,7 @@ import { onMounted, ref, reactive } from "vue";
 import { reqHospitalList } from "@/api/home/index";
 
 // 引入医院数据对象
-import { HospitalResponseData, Content } from "@/api/home/type";
+import type { HospitalResponseData, Content } from "@/api/home/type";
 
 // 分页
 let pageInfo = reactive({

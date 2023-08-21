@@ -27,7 +27,8 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
     (response) => {
         // 响应拦截器成功的回调，一般会简化数据
-        return response;
+        // 这里直接返回 data
+        return response.data;
     },
     (error) => {
         // 处理网络请求失败的错误
