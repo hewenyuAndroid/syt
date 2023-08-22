@@ -20,6 +20,31 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
+
+// 导入等级的response对象
+import type { HospitalLevelOrRegionData } from "@/api/home/type";
+
+// 导入等级接口函数
+import { reqHospitalLevelOrRegion } from "@/api/home/index";
+
+onMounted(() => {
+  requestLevel();
+});
+
+const requestLevel = async () => {
+  const result: HospitalLevelOrRegionData = await reqHospitalLevelOrRegion(
+    "HosType"
+  );
+  console.log("----aaa>", result);
+};
+</script>
+
+<script lang="ts">
+// vue2 写法
+export default {
+  name: "Level",
+};
 </script>
 
 <style scoped lang="scss">

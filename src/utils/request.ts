@@ -11,20 +11,34 @@
 import axios from 'axios';
 
 // 2. 利用 axios.create 方法创建一个 axios 实例 （可以设置基础路径、超时时间等）
-const request = axios.create({
-    baseURL: '/admin',    // 请求的基础路径设置
+const request_8201 = axios.create({
+    baseURL: '/admin_8201',    // 请求的基础路径设置
     timeout: 5000,  // 设置超时时间 5000 ms
-})
+});
+
+const request_8202 = axios.create({
+    baseURL: '/admin_8202',    // 请求的基础路径设置
+    timeout: 5000,  // 设置超时时间 5000 ms
+});
+
 
 // 3. 添加请求拦截器
-request.interceptors.request.use((config) => {
+request_8201.interceptors.request.use((config) => {
     // config: 请求拦截器回调注入的对象 （配置对象），配置对象身上最重要的一件事情 headers 属性
     // 可以通过携带公共参数
+    console.log("----------------url>", config)
     return config;
-})
+});
+
+request_8202.interceptors.request.use((config) => {
+    // config: 请求拦截器回调注入的对象 （配置对象），配置对象身上最重要的一件事情 headers 属性
+    // 可以通过携带公共参数
+    console.log("----------------url>", config)
+    return config;
+});
 
 // 4. 添加响应拦截器
-request.interceptors.response.use(
+request_8201.interceptors.response.use(
     (response) => {
         // 响应拦截器成功的回调，一般会简化数据
         // 这里直接返回 data
@@ -32,11 +46,27 @@ request.interceptors.response.use(
     },
     (error) => {
         // 处理网络请求失败的错误
-        console.log('--aaa>>',error)
+        console.log('--aaa>>', error)
         return Promise.reject(new Error(error.message));
     }
-)
+);
+
+request_8202.interceptors.response.use(
+    (response) => {
+        // 响应拦截器成功的回调，一般会简化数据
+        // 这里直接返回 data
+        return response.data;
+    },
+    (error) => {
+        // 处理网络请求失败的错误
+        console.log('--aaa>>', error)
+        return Promise.reject(new Error(error.message));
+    }
+);
 
 // 5. 对外暴露 request
-export default request;
+export default {
+    request_8201: request_8201,
+    request_8202: request_8202,
+};
 

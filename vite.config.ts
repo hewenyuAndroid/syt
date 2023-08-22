@@ -22,11 +22,17 @@ export default defineConfig({
         // /api 路径不需要重写，默认保留
         // rewrite: (path) => path.replace(/^\/api/, ''),
       },
-      '/admin':{
+      '/admin_8201': {
         target: 'http://139.198.34.216:8201',
         changeOrigin: true,
-        // /admin 路径不需要重写，默认保留
-        // rewrite: (path) => path.replace(/^\/admin/, ''),
+        // /admin_8201 替换成 /admin
+        rewrite: (path) => path.replace(/^\/admin_8201/, '/admin'),
+      },
+      '/admin_8202': {
+        target: 'http://139.198.34.216:8202',
+        changeOrigin: true,
+        // /admin_8202 替换成 /admin
+        rewrite: (path) => path.replace(/^\/admin_8202/, '/admin'),
       }
     }
   }

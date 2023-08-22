@@ -81,3 +81,26 @@ export interface HospitalResponseData extends ResponseData {
         "empty": boolean
     }
 }
+
+/**
+ * 医院等级/地区数据对象
+ */
+export interface HospitalLevelOrRegion {
+    "createTime": string,
+    "dictCode": string,
+    "hasChildren": boolean,
+    "id": number,
+    "isDeleted": number,
+    "name": string,
+    "param": {},
+    "parentId": number,
+    "updateTime": string,
+    "value": string
+};
+
+export type HospitalLevelOrRegionArr = HospitalLevelOrRegion[];
+
+export interface HospitalLevelOrRegionData extends ResponseData {
+
+}
+
