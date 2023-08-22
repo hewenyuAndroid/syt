@@ -6,14 +6,21 @@
     <div class="level">
       <span>等级:</span>
       <ul>
-        <li class="active">全部</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
+        <!-- 
+          1.定义 active 属性，值为 currentLevel == ''
+          2.增加点击事件，切换 currentLevel 为默认值
+        -->
+        <li :class="{ active: currentLevel == '' }" @click="changeLevel('')">
+          全部
+        </li>
+        <li
+          v-for="level in levelList"
+          :key="level.id"
+          :class="{ active: currentLevel == level.id }"
+          @click="changeLevel(level.id)"
+        >
+          {{ level.name }}
+        </li>
       </ul>
     </div>
   </div>
@@ -23,20 +30,43 @@
 import { onMounted, ref } from "vue";
 
 // 导入等级的response对象
-import type { HospitalLevelOrRegionData } from "@/api/home/type";
+import type {
+  HospitalLevelOrRegionData,
+  HospitalLevelOrRegionArr,
+} from "@/api/home/type";
 
 // 导入等级接口函数
-import { reqHospitalLevelOrRegion } from "@/api/home/index";
+import { reqHospitalLevelOrRegion, DICT_CODE } from "@/api/home/index";
 
 onMounted(() => {
   requestLevel();
 });
 
+// 等级数据
+const levelList = ref<HospitalLevelOrRegionArr>([]);
+
+/**
+ * 当前选中的level
+ * 全部: ''
+ * 其它: level.id
+ */
+let currentLevel = ref<string>("");
+
+function changeLevel(level: string) {
+  console.log("changeLevel(): level=", level);
+  currentLevel.value = level;
+  // todo 修改level
+}
+
 const requestLevel = async () => {
+  // 请求医院等级数据
   const result: HospitalLevelOrRegionData = await reqHospitalLevelOrRegion(
-    "HosType"
+    DICT_CODE.LEVEL
   );
-  console.log("----aaa>", result);
+  console.log("---->requestLevel():", result);
+
+  // 赋值响应式数据
+  levelList.value = result.data;
 };
 </script>
 

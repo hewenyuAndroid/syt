@@ -80,7 +80,7 @@ export interface HospitalResponseData extends ResponseData {
         "number": number,
         "empty": boolean
     }
-}
+};
 
 /**
  * 医院等级/地区数据对象
@@ -100,7 +100,11 @@ export interface HospitalLevelOrRegion {
 
 export type HospitalLevelOrRegionArr = HospitalLevelOrRegion[];
 
-export interface HospitalLevelOrRegionData extends ResponseData {
 
+/**
+ * 医院等级/地区返回的数据对象
+ */
+export interface HospitalLevelOrRegionData extends ResponseData {
+    data: HospitalLevelOrRegionArr
 }
 

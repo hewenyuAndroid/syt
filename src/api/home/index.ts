@@ -17,7 +17,7 @@ enum API {
     URL_HOSPITAL_LEVEL_OR_REGION = "/cmn/dict/findByDictCode/"
 }
 
-enum DICT_CODE {
+export enum DICT_CODE {
     LEVEL = "HosType",
     REGIONO = "Beijin"
 }
