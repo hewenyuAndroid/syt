@@ -65,8 +65,10 @@ const requestLevel = async () => {
   );
   console.log("---->requestLevel():", result);
 
-  // 赋值响应式数据
-  levelList.value = result.data;
+  if (result.code === 200) {
+    // 赋值响应式数据
+    levelList.value = result.data;
+  }
 };
 </script>
 

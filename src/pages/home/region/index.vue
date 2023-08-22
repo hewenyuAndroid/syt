@@ -56,7 +56,9 @@ const requestRegion = async () => {
 
   console.log("------>requestRegion():", result);
   // 更新响应式数据
-  regionList.value = result.data;
+  if (result.code == 200) {
+    regionList.value = result.data;
+  }
 };
 </script>
 
