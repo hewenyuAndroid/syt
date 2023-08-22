@@ -27,10 +27,13 @@ export enum DICT_CODE {
  * 
  * @param pageIndex 当前页面下标
  * @param pageSize 请求一页的数据大小
+ * @param hostype 医院等级
+ * @param districtCode 医院地区
  * @returns 
  */
-export const reqHospitalList = (pageIndex: number, pageSize: number) =>
-    request.request_8201.get<any, HospitalResponseData>(API.URL_HOSPITAL_LIST + `${pageIndex}/${pageSize}`)
+export const reqHospitalList = (pageIndex: number, pageSize: number, hostype: string = '', districtCode: string = '') =>
+    request.request_8201.get<any, HospitalResponseData>(
+        API.URL_HOSPITAL_LIST + `${pageIndex}/${pageSize}?hostype=${hostype}&districtCode=${districtCode}`)
 
 /**
  * 请求医院等级/地区

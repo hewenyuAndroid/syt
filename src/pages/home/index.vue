@@ -8,8 +8,11 @@
     <el-row gutter="20">
       <!-- 左侧区域 -->
       <el-col :span="20">
-        <!-- 医院等级 -->
-        <Level />
+        <!-- 
+          医院等级 
+          传入自定义事件 onLevelChange
+          -->
+        <Level @onLevelChange="onLevelChange" />
         <!-- 地区 -->
         <Region />
         <!-- 医院卡片列表 -->
@@ -76,6 +79,21 @@ let totalCount = ref<number>(0);
 // 医院数据列表
 let hospitalList = ref<Content>([]);
 
+// 医院等级
+let hosType = ref<string>("");
+// 医院地区
+let districtCode = ref<string>("");
+
+/**
+ * 子组件level变更时父组件的自定义事件回调函数
+ */
+function onLevelChange(level: string) {
+  console.log("onLevelChange():", level);
+  hosType.value = level;
+  // 等级变更，重新请求数据
+  requestHospitalList();
+}
+
 // 组件被挂载时
 onMounted(() => {
   requestHospitalList();
@@ -97,7 +115,9 @@ function onPageIndexChange(index: number, size: number) {
 const requestHospitalList = async () => {
   const result: HospitalResponseData = await reqHospitalList(
     pageIndex.value,
-    pageSize.value
+    pageSize.value,
+    hosType.value,
+    districtCode.value
   );
   console.log("requestHospitalList-->", result);
   if (result.code === 200) {

@@ -15,9 +15,9 @@
         </li>
         <li
           v-for="level in levelList"
-          :key="level.id"
-          :class="{ active: currentLevel == level.id }"
-          @click="changeLevel(level.id)"
+          :key="level.value"
+          :class="{ active: currentLevel == level.value }"
+          @click="changeLevel(level.value)"
         >
           {{ level.name }}
         </li>
@@ -38,6 +38,9 @@ import type {
 // 导入等级接口函数
 import { reqHospitalLevelOrRegion, DICT_CODE } from "@/api/home/index";
 
+// 获取父组件的自定义事件
+let $emit = defineEmits(["onLevelChange"]);
+
 onMounted(() => {
   requestLevel();
 });
@@ -55,7 +58,8 @@ let currentLevel = ref<string>("");
 function changeLevel(level: string) {
   console.log("changeLevel(): level=", level);
   currentLevel.value = level;
-  // todo 修改level
+  // 发送自定义事件，通知父组件
+  $emit("onLevelChange", level);
 }
 
 const requestLevel = async () => {
