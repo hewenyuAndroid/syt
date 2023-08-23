@@ -51,12 +51,16 @@ const levelList = ref<HospitalLevelOrRegionArr>([]);
 /**
  * 当前选中的level
  * 全部: ''
- * 其它: level.id
+ * 其它: level.value
  */
 let currentLevel = ref<string>("");
 
 function changeLevel(level: string) {
   console.log("changeLevel(): level=", level);
+  if (level == currentLevel.value) {
+    console.log("changeLevel(): repeat click ", level);
+    return;
+  }
   currentLevel.value = level;
   // 发送自定义事件，通知父组件
   $emit("onLevelChange", level);

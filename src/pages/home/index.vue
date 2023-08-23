@@ -14,7 +14,7 @@
           -->
         <Level @onLevelChange="onLevelChange" />
         <!-- 地区 -->
-        <Region />
+        <Region @onRegionChange="onRegionChange" />
         <!-- 医院卡片列表 -->
         <div class="hospital-list">
           <Card
@@ -91,6 +91,16 @@ function onLevelChange(level: string) {
   console.log("onLevelChange():", level);
   hosType.value = level;
   // 等级变更，重新请求数据
+  requestHospitalList();
+}
+
+/**
+ * 子组件region变更时父组件的自定义事件回调函数
+ */
+function onRegionChange(region: string) {
+  console.log("onRegionChange():", region);
+  districtCode.value = region;
+  // 地区变更，重新请求数据
   requestHospitalList();
 }
 

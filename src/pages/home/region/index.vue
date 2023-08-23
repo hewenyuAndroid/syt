@@ -7,9 +7,9 @@
       </li>
       <li
         v-for="region in regionList"
-        :key="region.id"
-        :class="{ active: currentRegion == region.id }"
-        @click="changeRegion(region.id)"
+        :key="region.value"
+        :class="{ active: currentRegion == region.value }"
+        @click="changeRegion(region.value)"
       >
         {{ region.name }}
       </li>
@@ -36,10 +36,16 @@ let currentRegion = ref<string>("");
 // 地区数据列表
 let regionList = ref<HospitalLevelOrRegionArr>([]);
 
+const $emit = defineEmits(["onRegionChange"]);
+
 function changeRegion(region: string) {
   console.log("changeRegion()", region);
+  if (region == currentRegion.value) {
+    console.log("changeRegion(): repeat click ", region);
+    return;
+  }
   currentRegion.value = region;
-  // todo 联动地区修改
+  $emit("onRegionChange", region);
 }
 
 onMounted(() => {
